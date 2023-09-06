@@ -9,6 +9,7 @@ phases:
       - |
         if expr "${FOLDER_PATH}" : ".*client*" ; then
           echo "Client build, embedding frontend layer file with ALB backend DNS"
+          echo $FOLDER_PATH
         fi
   build:
     commands:
@@ -21,7 +22,7 @@ phases:
       - echo Pushing the Docker image...
       - docker push $REPO_URL:$IMAGE_TAG
       - echo Changing directory to Templates directory
-      - cd ./Infrastructure/Templates
+      - cd ./infra/Templates
       - echo Preparing spec files in new folder
       - mkdir Artifacts
       - cp appspec.yaml Artifacts/appspec.yaml && cp taskdef.json Artifacts/taskdef.json
@@ -40,5 +41,5 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: 'Infrastructure/Templates/Artifacts'
+  base-directory: 'infra/Templates/Artifacts'
   discard-paths: yes
