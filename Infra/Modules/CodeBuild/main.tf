@@ -41,11 +41,6 @@ resource "aws_codebuild_project" "aws_codebuild" {
     }
 
     environment_variable {
-      name  = "DYNAMODB_TABLE"
-      value = var.dynamodb_table_name
-    }
-
-    environment_variable {
       name  = "TASK_DEFINITION_FAMILY"
       value = var.task_definition_family
     }
@@ -69,15 +64,13 @@ resource "aws_codebuild_project" "aws_codebuild" {
       name  = "ECS_ROLE"
       value = var.ecs_role
     }
-
-    environment_variable {
-      name  = "ECS_TASK_ROLE"
-      value = var.ecs_task_role
-    }
-
     environment_variable {
       name  = "SERVER_ALB_URL"
       value = var.server_alb_url
+    }
+    environment_variable {
+      name  = "ECS_TASK_ROLE"
+      value = var.ecs_task_role
     }
   }
 

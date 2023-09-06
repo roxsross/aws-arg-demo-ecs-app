@@ -63,9 +63,3 @@ variable "ecs_task_role" {
   type        = string
   default     = "null"
 }
-
-variable "dynamodb_table_name" {
-  description = "The name of Dynamodb table used by the server application"
-  type        = string
-  default     = ""
-}

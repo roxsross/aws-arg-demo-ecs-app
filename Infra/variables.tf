@@ -24,11 +24,6 @@ variable "github_token" {
   sensitive   = true
 }
 
-variable "port_app_server" {
-  description = "The port used by your server application"
-  type        = number
-  default     = 3001
-}
 
 variable "port_app_client" {
   description = "The port used by your client application"
@@ -42,11 +37,6 @@ variable "buildspec_path" {
   default     = "./Infrastructure/Templates/buildspec.yml"
 }
 
-variable "folder_path_server" {
-  description = "The location of the server files"
-  type        = string
-  default     = "./Code/server/."
-}
 
 variable "folder_path_client" {
   description = "The location of the client files"
@@ -58,7 +48,6 @@ variable "container_name" {
   description = "The name of the container of each ECS service"
   type        = map(string)
   default = {
-    server = "Container-server"
     client = "Container-client"
   }
 }
@@ -87,5 +76,5 @@ variable "repository_name" {
 variable "repository_branch" {
   description = "The name of branch the Github repository, which is going to trigger a new CodePipeline excecution"
   type        = string
-  default     = "main"
+  default     = "master"
 }
