@@ -36,30 +36,17 @@ variable "branch" {
   type        = string
 }
 
-variable "codebuild_project_server" {
-  description = "Server's CodeBuild project name"
-  type        = string
-}
-
 variable "codebuild_project_client" {
   description = "Client's CodeBuild project name"
   type        = string
 }
 
-variable "app_name_server" {
-  description = "CodeDeploy Application name for the server"
-  type        = string
-}
 
 variable "app_name_client" {
   description = "CodeDeploy Application name for the client"
   type        = string
 }
 
-variable "deployment_group_server" {
-  description = "CodeDeploy deployment group name for the server"
-  type        = string
-}
 
 variable "deployment_group_client" {
   description = "CodeDeploy deployment group name for the client"
