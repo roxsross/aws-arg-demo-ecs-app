@@ -6,11 +6,6 @@ phases:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
       - echo Checking for build type
-      - |
-        if expr "${FOLDER_PATH}" : ".*client*" ; then
-          echo "Client build, embedding frontend layer file with ALB backend DNS"
-          echo $FOLDER_PATH
-        fi
   build:
     commands:
       - echo Build started on `date`
@@ -25,6 +20,7 @@ phases:
       - cd ./Infra/Templates
       - echo Preparing spec files in new folder
       - mkdir Artifacts
+      - ls -lrt
       - cp appspec.yaml Artifacts/appspec.yaml && cp taskdef.json Artifacts/taskdef.json
       - echo Changing directory to the Artifacts directory
       - cd Artifacts

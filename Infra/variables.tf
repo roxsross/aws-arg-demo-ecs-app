@@ -41,7 +41,7 @@ variable "buildspec_path" {
 variable "folder_path_client" {
   description = "The location of the client files"
   type        = string
-  default     = "./Code/client/."
+  default     = "./app/client/."
 }
 
 variable "container_name" {
