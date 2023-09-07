@@ -33,7 +33,22 @@ resource "aws_codepipeline" "aws_codepipeline" {
       }
     }
   }
+  stage {
+    name = "VulnerabilityCheck"
 
+    action {
+      name             = "Check_secrets"
+      category         = "Test"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      version          = "1"
+      input_artifacts  = ["SourceArtifact"]
+      output_artifacts = ["secretArtifact_client"]
+      configuration = {
+        ProjectName = var.codebuild_project_client
+      }
+    }
+  }
   stage {
     name = "Build"
 

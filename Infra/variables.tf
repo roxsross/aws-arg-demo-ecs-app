@@ -36,6 +36,12 @@ variable "buildspec_path" {
   type        = string
   default     = "./Infra/Templates/buildspec.yml"
 }
+variable "buildspec_security_path" {
+  description = "The location of the buildspec file"
+  type        = string
+  default     = "./Infra/Templates/buildspec-secrets.yml"
+}
+
 
 
 variable "folder_path_client" {
