@@ -42,7 +42,7 @@ variable "codebuild_project_client" {
 }
 
 variable "codestar" {
-  type        = string  
+  type = string
 }
 
 variable "codebuild_security_secrets" {

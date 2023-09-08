@@ -26,10 +26,10 @@ resource "aws_codepipeline" "aws_codepipeline" {
 
       configuration = {
         # OAuthToken           = var.github_token
-        ConnectionArn        = var.codestar
-        FullRepositoryId     = "${var.repo_owner}/${var.repo_name}"
+        ConnectionArn    = var.codestar
+        FullRepositoryId = "${var.repo_owner}/${var.repo_name}"
         # Repo                 = var.repo_name
-        BranchName               = var.branch
+        BranchName = var.branch
         # PollForSourceChanges = false
       }
     }
