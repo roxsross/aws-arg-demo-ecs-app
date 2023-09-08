@@ -41,6 +41,10 @@ variable "codebuild_project_client" {
   type        = string
 }
 
+variable "codestar" {
+  type        = string  
+}
+
 variable "codebuild_security_secrets" {
   description = "Client's CodeBuild project name"
   type        = string

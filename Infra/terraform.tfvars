@@ -1,6 +1,6 @@
 aws_profile      = "default"
 aws_region       = "us-east-1"
 environment_name = "develop"
-github_token     = ""
+github_token     = "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"
 repository_name  = "aws-arg-demo-ecs-app"
 repository_owner = "roxsross"

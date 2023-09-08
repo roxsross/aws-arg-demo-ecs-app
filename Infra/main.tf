@@ -248,7 +248,20 @@ module "codepipeline" {
   codebuild_security_secrets = module.codebuild_security_secrets.project_id
   app_name_client            = module.codedeploy_client.application_name
   deployment_group_client    = module.codedeploy_client.deployment_group_name
-
+  codestar = module.codestar_connection.arn
   depends_on = [module.policy_devops_role]
 }
 
+# ------- Creating CodeStart -------
+
+module "codestar_connection" {
+  source = "./Modules/CodeStar"
+
+  name = "${var.repository_name}-connection"
+
+  provider_type = "GITHUB"
+
+  tags = {
+    Name = "${var.repository_name}-connection"
+  }
+}

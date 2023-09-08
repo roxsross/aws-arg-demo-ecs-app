@@ -194,13 +194,21 @@ data "aws_iam_policy_document" "role_policy_devops_role" {
       "codebuild:StartBuildBatch",
       "codebuild:StopBuild"
     ]
-    resources = var.code_build_projects
+    resources = ["*"]
   }
   statement {
     sid    = "AllowCodebuildList"
     effect = "Allow"
     actions = [
       "codebuild:ListBuilds"
+    ]
+    resources = ["*"]
+  }
+  statement {
+    sid    = "AllowCodestar"
+    effect = "Allow"
+    actions = [
+      "codestar-connections:UseConnection"
     ]
     resources = ["*"]
   }

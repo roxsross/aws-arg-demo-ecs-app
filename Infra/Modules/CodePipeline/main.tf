@@ -19,17 +19,18 @@ resource "aws_codepipeline" "aws_codepipeline" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = "AWS"
+      provider         = "CodeStarSourceConnection"
       version          = "1"
       output_artifacts = ["SourceArtifact"]
 
       configuration = {
-        OAuthToken           = var.github_token
-        Owner                = var.repo_owner
-        Repo                 = var.repo_name
-        Branch               = var.branch
-        PollForSourceChanges = true
+        # OAuthToken           = var.github_token
+        ConnectionArn        = var.codestar
+        FullRepositoryId     = "${var.repo_owner}/${var.repo_name}"
+        # Repo                 = var.repo_name
+        BranchName               = var.branch
+        # PollForSourceChanges = false
       }
     }
   }
@@ -45,7 +46,7 @@ resource "aws_codepipeline" "aws_codepipeline" {
       input_artifacts  = ["SourceArtifact"]
       output_artifacts = ["secretArtifact_client"]
       configuration = {
-        ProjectName = var.codebuild_project_client
+        ProjectName = var.codebuild_security_secrets
       }
     }
   }
