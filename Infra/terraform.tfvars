@@ -1,6 +1,0 @@
-aws_profile      = ""
-aws_region       = ""
-environment_name = ""
-github_token     = ""
-repository_name  = ""
-repository_owner = ""
