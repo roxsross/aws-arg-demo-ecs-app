@@ -25,12 +25,9 @@ resource "aws_codepipeline" "aws_codepipeline" {
       output_artifacts = ["SourceArtifact"]
 
       configuration = {
-        # OAuthToken           = var.github_token
         ConnectionArn    = var.codestar
         FullRepositoryId = "${var.repo_owner}/${var.repo_name}"
-        # Repo                 = var.repo_name
         BranchName = var.branch
-        # PollForSourceChanges = false
       }
     }
   }
@@ -47,6 +44,22 @@ resource "aws_codepipeline" "aws_codepipeline" {
       output_artifacts = ["secretArtifact_client"]
       configuration = {
         ProjectName = var.codebuild_security_secrets
+      }
+    }
+  }
+  stage {
+    name = "VulnerabilityContainerCheck"
+
+    action {
+      name             = "Check_Trivy"
+      category         = "Test"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      version          = "1"
+      input_artifacts  = ["SourceArtifact"]
+      output_artifacts = ["trivyArtifact_client"]
+      configuration = {
+        ProjectName = var.codebuild_security_trivy
       }
     }
   }

@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - TRIVY_VERSION=0.44.1
+      - rpm -ivh https://github.com/aquasecurity/trivy/releases/download/v${TRIVY_VERSION}/trivy_${TRIVY_VERSION}_Linux-64bit.rpm
+    finally:
+      - echo This always runs even if the login command fails   
+
+  pre_build:
+    commands:
+      - echo on `date`
+      - TAG=$(echo ${CODEBUILD_RESOLVED_SOURCE_VERSION} | cut -c 1-7)
+      - echo Building the Docker image...
+      - REPOSITORY_URI='trivy'
+      - docker build -t $REPOSITORY_URI:$TAG .
+  build:
+    commands:
+      - trivy image --format json --output results.json --exit-code 0 --severity HIGH,MEDIUM,LOW  $REPOSITORY_URI:$TAG
+      - trivy image --format json --output results.json --exit-code 1 --severity CRITICAL $REPOSITORY_URI:$TAG
+  post_build:
+    commands:
+      - echo trivy scan completed on `date`
+      - cat results.json
+artifacts:
+  files: results.json

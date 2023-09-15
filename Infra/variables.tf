@@ -42,6 +42,12 @@ variable "buildspec_security_path" {
   default     = "./Infra/Templates/buildspec-secrets.yml"
 }
 
+variable "buildspec_security_trivy_path" {
+  description = "The location of the buildspec file"
+  type        = string
+  default     = "./Infra/Templates/buildspec-trivy.yml"
+}
+
 
 
 variable "folder_path_client" {

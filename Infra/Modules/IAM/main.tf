@@ -73,7 +73,8 @@ resource "aws_iam_role" "devops_role" {
         "Service": [
           "codebuild.amazonaws.com",
           "codedeploy.amazonaws.com",
-          "codepipeline.amazonaws.com"
+          "codepipeline.amazonaws.com",
+          "codestar-connections:*"
         ]
       },
       "Action": "sts:AssumeRole"
@@ -208,7 +209,8 @@ data "aws_iam_policy_document" "role_policy_devops_role" {
     sid    = "AllowCodestar"
     effect = "Allow"
     actions = [
-      "codestar-connections:UseConnection"
+      "codestar-connections:UseConnection",
+      "codestar-connections:*"
     ]
     resources = ["*"]
   }

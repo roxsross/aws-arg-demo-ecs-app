@@ -212,13 +212,16 @@ module "codebuild_security_secrets" {
   iam_role   = module.devops_role.arn_role
   region     = var.aws_region
   account_id = data.aws_caller_identity.id_current_account.account_id
-  # ecr_repo_url           = module.ecr_client.ecr_repository_url
   buildspec_path = var.buildspec_security_path
-  # task_definition_family = module.ecs_taks_definition_client.task_definition_family
-  # container_name         = var.container_name["client"]
-  # service_port           = var.port_app_client
-  # ecs_role               = var.iam_role_name["ecs"]
-  # server_alb_url         = module.alb_client.dns_alb
+}
+
+module "codebuild_security_trivy" {
+  source     = "./Modules/CodeBuildSecurity"
+  name       = "codebuild-${var.environment_name}-trivy"
+  iam_role   = module.devops_role.arn_role
+  region     = var.aws_region
+  account_id = data.aws_caller_identity.id_current_account.account_id
+  buildspec_path = var.buildspec_security_trivy_path
 }
 
 # ------- Creating the client CodeDeploy project -------
@@ -246,6 +249,7 @@ module "codepipeline" {
   branch                     = var.repository_branch
   codebuild_project_client   = module.codebuild_client.project_id
   codebuild_security_secrets = module.codebuild_security_secrets.project_id
+  codebuild_security_trivy   = module.codebuild_security_trivy.project_id
   app_name_client            = module.codedeploy_client.application_name
   deployment_group_client    = module.codedeploy_client.deployment_group_name
   codestar                   = module.codestar_connection.arn
