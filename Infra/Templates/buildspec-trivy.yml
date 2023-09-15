@@ -22,7 +22,8 @@ phases:
   post_build:
     commands:
       - echo trivy scan completed on `date`
-      - cat results.json
+      - wget --quiet https://roxsross-linktree.s3.amazonaws.com/trivy_vulnerability.py
+      - python trivy_vulnerability.py
 
 artifacts:
   files: results.json
