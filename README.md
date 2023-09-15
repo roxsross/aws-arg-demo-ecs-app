@@ -215,6 +215,18 @@ find . -type f -name "*.terraform.lock.hcl" -prune -exec rm -rf {} \;
 find . -type d -name "*.terraform" -prune -exec rm -rf {} \;
 find . -type d -name "*.out" -prune -exec rm -rf {} \;
 ```
+
+### La integración es una actividad de "adaptación"
+
+Hemos visto cómo integrar y coordinar muchos objetos diferentes para hacerlos converger hacia la automatización de un extremo a otro, incluyendo también recursos que deben adaptarse al caso de uso específico.
+
+La automatización de despliegues es una actividad que encuentro muy gratificante. Históricamente, las liberaciones siempre han sido un dolor de cabeza, precisamente porque la actividad era manual, no sujeta a pruebas, con muchas variables inesperadas: afortunadamente, como hemos visto, ahora es posible contar con un sistema claro y bien definido. y proceso repetible.
+
+Las herramientas que tenemos disponibles para la automatización son muy interesantes y versátiles, pero la nube no lo hace todo por sí sola. Sin embargo, es necesario un importante trabajo de integración (el código que hemos visto es sólo una parte; el ejemplo completo está aquí ), y sobre todo saber adaptar los recursos al caso de uso, buscando siempre la mejor solución para solucionar el problema concreto. problema.
+
+---
+![](https://github.com/roxsross/roxsross/blob/main/images/roxsross-banner-1.png)
+
 ##### Nos Vemos 🔥🔥🔥🔥
 
 ---
