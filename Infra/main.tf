@@ -260,11 +260,8 @@ module "codepipeline" {
 
 module "codestar_connection" {
   source = "./Modules/CodeStar"
-
   name = "${var.repository_name}-connection"
-
   provider_type = "GITHUB"
-
   tags = {
     Name = "${var.repository_name}-connection"
   }
