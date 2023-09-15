@@ -13,11 +13,12 @@ phases:
       - echo on `date`
       - TAG=$(echo ${CODEBUILD_RESOLVED_SOURCE_VERSION} | cut -c 1-7)
       - echo Building the Docker image...
-      - docker build -t trivy:$TAG ./app/client/ .
+      - IMAGE="trivy:$TAG"
+      - docker build -t $IMAGE ./app/client/
   build:
     commands:
-      - trivy image --format json --output results.json --exit-code 0 --severity HIGH,MEDIUM,LOW  trivy:$TAG
-      - trivy image --format json --output results.json --exit-code 1 --severity CRITICAL trivy:$TAG
+      - trivy image --format json --output results.json --exit-code 0 --severity HIGH,MEDIUM,LOW $IMAGE
+      - trivy image --format json --output results.json --exit-code 1 --severity CRITICAL $IMAGE
   post_build:
     commands:
       - echo trivy scan completed on `date`
