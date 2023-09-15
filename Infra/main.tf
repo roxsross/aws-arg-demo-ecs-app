@@ -207,20 +207,20 @@ module "codebuild_client" {
 }
 
 module "codebuild_security_secrets" {
-  source     = "./Modules/CodeBuildSecurity"
-  name       = "codebuild-${var.environment_name}-secret"
-  iam_role   = module.devops_role.arn_role
-  region     = var.aws_region
-  account_id = data.aws_caller_identity.id_current_account.account_id
+  source         = "./Modules/CodeBuildSecurity"
+  name           = "codebuild-${var.environment_name}-secret"
+  iam_role       = module.devops_role.arn_role
+  region         = var.aws_region
+  account_id     = data.aws_caller_identity.id_current_account.account_id
   buildspec_path = var.buildspec_security_path
 }
 
 module "codebuild_security_trivy" {
-  source     = "./Modules/CodeBuildSecurity"
-  name       = "codebuild-${var.environment_name}-trivy"
-  iam_role   = module.devops_role.arn_role
-  region     = var.aws_region
-  account_id = data.aws_caller_identity.id_current_account.account_id
+  source         = "./Modules/CodeBuildSecurity"
+  name           = "codebuild-${var.environment_name}-trivy"
+  iam_role       = module.devops_role.arn_role
+  region         = var.aws_region
+  account_id     = data.aws_caller_identity.id_current_account.account_id
   buildspec_path = var.buildspec_security_trivy_path
 }
 
@@ -259,8 +259,8 @@ module "codepipeline" {
 # ------- Creating CodeStart -------
 
 module "codestar_connection" {
-  source = "./Modules/CodeStar"
-  name = "${var.repository_name}-connection"
+  source        = "./Modules/CodeStar"
+  name          = "${var.repository_name}-connection"
   provider_type = "GITHUB"
   tags = {
     Name = "${var.repository_name}-connection"

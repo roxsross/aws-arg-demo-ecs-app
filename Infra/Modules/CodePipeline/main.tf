@@ -27,7 +27,7 @@ resource "aws_codepipeline" "aws_codepipeline" {
       configuration = {
         ConnectionArn    = var.codestar
         FullRepositoryId = "${var.repo_owner}/${var.repo_name}"
-        BranchName = var.branch
+        BranchName       = var.branch
       }
     }
   }
