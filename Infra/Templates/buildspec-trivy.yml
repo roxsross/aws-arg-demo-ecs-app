@@ -23,5 +23,7 @@ phases:
     commands:
       - echo trivy scan completed on `date`
       - cat results.json
+      - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
+
 artifacts:
   files: results.json
