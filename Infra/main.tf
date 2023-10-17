@@ -243,7 +243,7 @@ module "codepipeline" {
   name                       = "pipeline-${var.environment_name}"
   pipe_role                  = module.devops_role.arn_role
   s3_bucket                  = module.s3_codepipeline.s3_bucket_id
-  github_token               = var.github_token
+  # github_token               = var.github_token
   repo_owner                 = var.repository_owner
   repo_name                  = var.repository_name
   branch                     = var.repository_branch

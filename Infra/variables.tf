@@ -18,11 +18,11 @@ variable "environment_name" {
   }
 }
 
-variable "github_token" {
-  description = "Personal access token from Github"
-  type        = string
-  sensitive   = true
-}
+# variable "github_token" {
+#   description = "Personal access token from Github"
+#   type        = string
+#   sensitive   = true
+# }
 
 
 variable "port_app_client" {

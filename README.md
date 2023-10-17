@@ -38,7 +38,6 @@ Crear un clúster ECS y un pipeline que cree la nueva versión de la imagen del 
     aws_profile      = "xxxx"
     aws_region       = "xxxx"
     environment_name = "xxxx"
-    github_token     = "xxxx"
     repository_name  = "xxxxx"
     repository_owner = "xxxxx" 
 </code></pre>    
